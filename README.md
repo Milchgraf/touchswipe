@@ -1,7 +1,7 @@
 HAMMER.js Pan Slider
 ===
 
-´´´
+```html
 <div id="container">
   <div class="inner_big_container" id="inner_big_container">
     <div class="page1">
@@ -22,4 +22,4 @@ HAMMER.js Pan Slider
     <span></span>
   </div>
 </div>
-´´´
+```
