@@ -3,8 +3,8 @@ HAMMER.js Pan Slider
 The HTML to include:
 ---
 ```html
-<div id="container">
-  <div class="inner_big_container" id="inner_big_container">
+<div id="slider_outer_container">
+  <div class="slider_absolute_inner_container" id="slider_absolute_inner_container">
     <div class="page1">
 
     </div>
@@ -14,13 +14,6 @@ The HTML to include:
     <div class="page3">
 
     </div>
-  </div>
-</div>
-<div class="container_dots">
-  <div class="inner_container_dots">
-    <span></span>
-    <span></span>
-    <span></span>
   </div>
 </div>
 ```
