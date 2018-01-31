@@ -1,6 +1,5 @@
-var container = document.getElementById('slider_outer_container');
+var container = document.getElementById('slider_outer_container'),
     containerJQ = $('#slider_outer_container'),
-    displayWidth = screen.width,
     start,
     end,
     offset,
