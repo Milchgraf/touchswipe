@@ -1,5 +1,11 @@
 HAMMER.js Pan Slider
 ===
+
+Requirements:
+---
+hammer.js
+jquery
+
 The HTML to include:
 ---
 ```html
