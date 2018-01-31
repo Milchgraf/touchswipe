@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <title>Mobile swipe</title>
     <script type="text/javascript" src="includes/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="includes/hammer.js"></script>
 
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div id="container" ontouchstart="touchStart(event)" ontouchmove="touchMove(event)" ontouchend="touchEnd(event)">
+    <div class="info_div">
+      <h1 class="info_p">COUNTER: 1</h1>
+    </div>
+    <div id="container">
       <div class="inner_big_container" id="inner_big_container">
         <div class="page1">
 
@@ -19,6 +23,13 @@
         <div class="page3">
 
         </div>
+      </div>
+    </div>
+    <div class="container_dots">
+      <div class="inner_container_dots">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
     <script type="text/javascript" src="javascript/functions.js"></script>
