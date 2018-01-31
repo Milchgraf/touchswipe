@@ -24,3 +24,4 @@ The HTML to include:
   </div>
 </div>
 ```
+Its important to use the defined class-names! Otherwise it won't work..
