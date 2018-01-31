@@ -1,7 +1,7 @@
 body{
   height: 100vh;
 }
-#container{
+#slider_outer_container{
   position: absolute;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@ body{
   height: 100%;
   overflow: hidden;
 }
-.inner_big_container{
+.slider_absolute_inner_container{
   position: absolute;
   top: 0;
   left: 0;
