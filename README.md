@@ -1,6 +1,7 @@
 HAMMER.js Pan Slider
 ===
-
+The HTML to include:
+---
 ```html
 <div id="container">
   <div class="inner_big_container" id="inner_big_container">
