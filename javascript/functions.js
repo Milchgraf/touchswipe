@@ -60,12 +60,12 @@ hammer.on('panend', function(evt){
     if(start > end){
       if(counter < countPages){
         //cl('PAN LEFT');
-        // $('.slider_absolute_inner_container').animate({
+        // $('.slider_absolute_inner_container').css({
         //   left: -100 * counter + '%'
         // }, remTime);
         $('.slider_absolute_inner_container').css({
           left: -100 * counter + '%',
-          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+          transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
         });
         counter += 1;
         oldLeft -= 100;
@@ -73,7 +73,7 @@ hammer.on('panend', function(evt){
         //cl('SNAPBACK LEFT PAN');
         $('.slider_absolute_inner_container').css({
           left: oldLeft + '%',
-          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+          transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
         });
       }
 
@@ -88,39 +88,39 @@ hammer.on('panend', function(evt){
           newLeft = 0;
         }
 
-        $('.slider_absolute_inner_container').animate({
+        $('.slider_absolute_inner_container').css({
           left: newLeft + '%',
-          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+          transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
         });
         counter -= 1;
         oldLeft += 100;
       }else{
         //cl('SNAPBACK RIGHT PAN');
-        $('.slider_absolute_inner_container').animate({
+        $('.slider_absolute_inner_container').css({
           left: 0,
-          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+          transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
         });
       }
     }
 
   //WENN DELTA-X KLEINER ALS SCREENWIDTH / 2
-}else if(velocity >= 1.3){
+}else if(velocity >= .5 && Math.abs(evt.deltaX < 200)){
 console.log('###VELOCITY BASED');
   //WENN NACH LINKS
   if(start > end){
     if(counter < countPages){
       //cl('PAN LEFT');
-      $('.slider_absolute_inner_container').animate({
+      $('.slider_absolute_inner_container').css({
         left: -100 * counter + '%',
-        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
       });
       counter += 1;
       oldLeft -= 100;
     }else{
       //cl('SNAPBACK LEFT PAN');
-      $('.slider_absolute_inner_container').animate({
+      $('.slider_absolute_inner_container').css({
         left: oldLeft + '%',
-        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
       });
     }
 
@@ -135,17 +135,17 @@ console.log('###VELOCITY BASED');
         newLeft = 0;
       }
 
-      $('.slider_absolute_inner_container').animate({
+      $('.slider_absolute_inner_container').css({
         left: newLeft + '%',
-        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
       });
       counter -= 1;
       oldLeft += 100;
     }else{
       //cl('SNAPBACK RIGHT PAN');
-      $('.slider_absolute_inner_container').animate({
+      $('.slider_absolute_inner_container').css({
         left: 0,
-        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        transition: (remTime / 1000) + 's ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
       });
     }
   }
@@ -160,17 +160,19 @@ console.log('###VELOCITY BASED');
 
     //WENN NACH LINKS
     if(start > end){
-      //cl('SNAPBACK LEFT PAN');
-      $('.slider_absolute_inner_container').animate({
-        left: newLeft + '%'
-      }, 250);
+      console.log('SNAPBACK LEFT PAN');
+      $('.slider_absolute_inner_container').css({
+        left: newLeft + '%',
+        transition: '250ms ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
+      });
     }
     //WENN NACH RECHTS
     if(start < end){
-      //cl('SNAPBACK RIGHT PAN');
-      $('.slider_absolute_inner_container').animate({
-        left: newLeft + '%'
-      }, 250);
+      console.log('SNAPBACK RIGHT PAN');
+      $('.slider_absolute_inner_container').css({
+        left: newLeft + '%',
+        transition: '250ms ' + 'cubic-bezier(0.4, 0.4, 0.4, 0.4)'
+      });
     }
 
   }
