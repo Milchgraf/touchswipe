@@ -36,8 +36,22 @@ hammer.on('panend', function(evt){
 
   end = evt.center.x;
 
+  //KRASSESTER SHIT, DEN ICH JE GESCHRIEBEN HABE
+  console.log('DELTA TIME: ' + evt.deltaTime);
+  console.log('DELTA X: ' + evt.deltaX);
+  console.log('REMAINING WAY: ' + (containerJQ.width() - Math.abs(evt.deltaX)));
+  console.log('VELOCITY: ' + (Math.abs(evt.deltaX) / evt.deltaTime));
+  console.log('REMAINING TIME: ' + ((containerJQ.width() - Math.abs(evt.deltaX)) / (Math.abs(evt.deltaX) / evt.deltaTime)));
+
+  var velocity = Math.abs(evt.deltaX) / evt.deltaTime;
+  var remTime = (containerJQ.width() - Math.abs(evt.deltaX)) / (Math.abs(evt.deltaX) / evt.deltaTime);
+
+  if(remTime > 250){
+    remTime = 200;
+  }
+
   //WENN DELTA-X GRÖßER ALS SCREENWIDTH / 2
-  if(evt.deltaX < -containerJQ.width() / 2 || evt.deltaX > containerJQ.width() / 2){
+  if(evt.deltaX < -containerJQ.width() / 3 || evt.deltaX > containerJQ.width() / 3){
 
     //WENN NACH LINKS
     if(start > end){
@@ -45,14 +59,14 @@ hammer.on('panend', function(evt){
         //cl('PAN LEFT');
         $('.slider_absolute_inner_container').animate({
           left: -100 * counter + '%'
-        }, 250);
+        }, remTime);
         counter += 1;
         oldLeft -= 100;
       }else{
         //cl('SNAPBACK LEFT PAN');
         $('.slider_absolute_inner_container').animate({
           left: oldLeft + '%'
-        }, 250);
+        }, remTime);
       }
 
     }
@@ -68,19 +82,61 @@ hammer.on('panend', function(evt){
 
         $('.slider_absolute_inner_container').animate({
           left: newLeft + '%'
-        }, 250);
+        }, remTime);
         counter -= 1;
         oldLeft += 100;
       }else{
         //cl('SNAPBACK RIGHT PAN');
         $('.slider_absolute_inner_container').animate({
           left: 0
-        }, 250);
+        }, remTime);
       }
     }
 
   //WENN DELTA-X KLEINER ALS SCREENWIDTH / 2
-  }else{
+}else if(velocity >= 3){
+
+  //WENN NACH LINKS
+  if(start > end){
+    if(counter < countPages){
+      //cl('PAN LEFT');
+      $('.slider_absolute_inner_container').animate({
+        left: -100 * counter + '%'
+      }, remTime);
+      counter += 1;
+      oldLeft -= 100;
+    }else{
+      //cl('SNAPBACK LEFT PAN');
+      $('.slider_absolute_inner_container').animate({
+        left: oldLeft + '%'
+      }, remTime);
+    }
+
+  }
+  //WENN NACH RECHTS
+  if(start < end){
+    if(counter > 1 && oldLeft < 0){
+      //cl('PAN RIGHT');
+      if(oldLeft != 0){
+        newLeft = oldLeft + 100;
+      }else{
+        newLeft = 0;
+      }
+
+      $('.slider_absolute_inner_container').animate({
+        left: newLeft + '%'
+      }, remTime);
+      counter -= 1;
+      oldLeft += 100;
+    }else{
+      //cl('SNAPBACK RIGHT PAN');
+      $('.slider_absolute_inner_container').animate({
+        left: 0
+      }, remTime);
+    }
+  }
+
+}else{
 
     if(oldLeft != 0){
       newLeft = oldLeft;
