@@ -14,6 +14,9 @@ var hammer = new Hammer(container);
 //Recognize when PAN starts
 hammer.on('panstart', function(evt){
   start = evt.center.x;
+  $('.slider_absolute_inner_container').css({
+    transition: ''
+  });
 });
 
 //During PAN gesture
@@ -51,22 +54,27 @@ hammer.on('panend', function(evt){
   }
 
   //WENN DELTA-X GRÖßER ALS SCREENWIDTH / 2
-  if(evt.deltaX < -containerJQ.width() / 3 || evt.deltaX > containerJQ.width() / 3){
+  if(evt.deltaX < -containerJQ.width() / 2 || evt.deltaX > containerJQ.width() / 2){
 
     //WENN NACH LINKS
     if(start > end){
       if(counter < countPages){
         //cl('PAN LEFT');
-        $('.slider_absolute_inner_container').animate({
-          left: -100 * counter + '%'
-        }, remTime);
+        // $('.slider_absolute_inner_container').animate({
+        //   left: -100 * counter + '%'
+        // }, remTime);
+        $('.slider_absolute_inner_container').css({
+          left: -100 * counter + '%',
+          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        });
         counter += 1;
         oldLeft -= 100;
       }else{
         //cl('SNAPBACK LEFT PAN');
-        $('.slider_absolute_inner_container').animate({
-          left: oldLeft + '%'
-        }, remTime);
+        $('.slider_absolute_inner_container').css({
+          left: oldLeft + '%',
+          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        });
       }
 
     }
@@ -81,35 +89,39 @@ hammer.on('panend', function(evt){
         }
 
         $('.slider_absolute_inner_container').animate({
-          left: newLeft + '%'
-        }, remTime);
+          left: newLeft + '%',
+          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        });
         counter -= 1;
         oldLeft += 100;
       }else{
         //cl('SNAPBACK RIGHT PAN');
         $('.slider_absolute_inner_container').animate({
-          left: 0
-        }, remTime);
+          left: 0,
+          transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+        });
       }
     }
 
   //WENN DELTA-X KLEINER ALS SCREENWIDTH / 2
-}else if(velocity >= 3){
-
+}else if(velocity >= 1.3){
+console.log('###VELOCITY BASED');
   //WENN NACH LINKS
   if(start > end){
     if(counter < countPages){
       //cl('PAN LEFT');
       $('.slider_absolute_inner_container').animate({
-        left: -100 * counter + '%'
-      }, remTime);
+        left: -100 * counter + '%',
+        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+      });
       counter += 1;
       oldLeft -= 100;
     }else{
       //cl('SNAPBACK LEFT PAN');
       $('.slider_absolute_inner_container').animate({
-        left: oldLeft + '%'
-      }, remTime);
+        left: oldLeft + '%',
+        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+      });
     }
 
   }
@@ -124,15 +136,17 @@ hammer.on('panend', function(evt){
       }
 
       $('.slider_absolute_inner_container').animate({
-        left: newLeft + '%'
-      }, remTime);
+        left: newLeft + '%',
+        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+      });
       counter -= 1;
       oldLeft += 100;
     }else{
       //cl('SNAPBACK RIGHT PAN');
       $('.slider_absolute_inner_container').animate({
-        left: 0
-      }, remTime);
+        left: 0,
+        transition: 'cubic-bezier(.4,.4,.4,.4)' + (remTime / 1000) + 's'
+      });
     }
   }
 

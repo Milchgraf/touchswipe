@@ -29,6 +29,6 @@
         <span></span>
       </div>
     </div>
-    <script type="text/javascript" src="javascript/functions.js"></script>
+    <script type="text/javascript" src="javascript/functions.js?v=1<?php echo md5_file("javascript/functions.js"); ?>"></script>
   </body>
 </html>
